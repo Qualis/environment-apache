@@ -6,13 +6,6 @@
       shell: a2dissite 000-default
       sudo: yes
 
-    - name: Install Apache module
-      apache2_module: state=present name={{item}}
-      with_items:
-        - ssl
-        - proxy_http
-      sudo: yes
-
     - name: Set ServerName
       lineinfile: dest=/etc/apache2/apache2.conf line="ServerName localhost"
       sudo: yes

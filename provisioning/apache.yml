@@ -1,10 +1,23 @@
     - name: Install apache
       apt: pkg=apache2
       sudo: yes
-      tags: run
+      tags:
+      - apache
+      - run
       notify:
       - Generate SSL certificate
       - Disable default VirtualHost
-      - Install Apache module
       - Set ServerName
+      - Restart apache
+
+    - name: Install Apache module
+      apache2_module: state=present name={{item}}
+      with_items:
+        - ssl
+        - proxy_http
+      sudo: yes
+      tags:
+      - apache
+      - run
+      notify:
       - Restart apache
