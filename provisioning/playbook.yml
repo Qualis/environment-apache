@@ -1,0 +1,10 @@
+---
+- hosts: all
+
+  tasks:
+
+    - include: apache.yml
+
+  handlers:
+
+    - include: apache-handler.yml

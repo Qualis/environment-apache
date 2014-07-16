@@ -1,0 +1,10 @@
+    - name: Install apache
+      apt: pkg=apache2
+      sudo: yes
+      tags: run
+      notify:
+      - Generate SSL certificate
+      - Disable default VirtualHost
+      - Install Apache module
+      - Set ServerName
+      - Restart apache
